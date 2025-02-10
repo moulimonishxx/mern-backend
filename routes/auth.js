@@ -1,5 +1,3 @@
-// backend/routes/auth.js
-
 import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -7,12 +5,15 @@ import User from "../models/User.js";
 
 const router = express.Router();
 
+// ✅ Test Route
+router.get("/", (req, res) => {
+  res.json({ message: "Auth API is working!" });
+});
+
 // Register User
 router.post("/register", async (req, res) => {
   try {
     const { username, email, password } = req.body;
-
-    // Check if the email already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "Email is already in use" });
