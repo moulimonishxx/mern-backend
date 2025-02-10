@@ -16,7 +16,7 @@ app.use(cors());
 
 // Routes
 app.use("/api/auth", authRouter);
-app.use("/api/users", usersRouter); // Add this line
+app.use("/api/users", usersRouter); // Add users route
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
