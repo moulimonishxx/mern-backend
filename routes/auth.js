@@ -5,7 +5,7 @@ import User from "../models/User.js";
 
 const router = express.Router();
 
-// ✅ Test Route
+// ✅ Test Route to Check API is Running
 router.get("/", (req, res) => {
   res.json({ message: "Auth API is working!" });
 });
@@ -14,6 +14,8 @@ router.get("/", (req, res) => {
 router.post("/register", async (req, res) => {
   try {
     const { username, email, password } = req.body;
+
+    // Check if the email already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "Email is already in use" });
