@@ -1,5 +1,3 @@
-// backend/routes/auth.js
-
 import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -7,7 +5,12 @@ import User from "../models/User.js";
 
 const router = express.Router();
 
-// Register User
+// ✅ Test Route to Check API is Running
+router.get("/", (req, res) => {
+  res.json({ message: "Auth API is working!" });
+});
+
+// ✅ Register User
 router.post("/register", async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -28,7 +31,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// Login User
+// ✅ Login User
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -46,7 +49,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// Logout User
+// ✅ Logout User
 router.get("/logout", (req, res) => {
   res.clearCookie("token");
   res.json({ message: "Logged out successfully" });
